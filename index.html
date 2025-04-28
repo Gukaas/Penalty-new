@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Neon Goal Predictor</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 style="
+        font-size: 3em;
+        font-weight: bold;
+        background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80, #facc15, #f472b6);
+        background-size: 1000% 1000%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientShift 8s ease infinite;
+        text-align: center;
+        margin-top: 20px;
+    ">PenaltyMind AI</h1>
+<style>
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    </style>
+<div style="text-align: center; margin-top: 30px;">
+</div>
+<div class="centered" id="register">
+<h1>🚀 Вход в Прогнозатор</h1>
+<input id="playerId" maxlength="15" placeholder="Введите ваш ID" type="text"/><div class="bet-input-container" style="margin-top: 10px; display: flex; align-items: center; justify-content: center;"><input id="bet_amount" placeholder="Введите сумму ставки" style="margin-right: 10px; padding: 8px; border-radius: 8px; border: 1px solid #00FF00;" type="number"/><span id="confirm_bet" style="cursor: pointer; color: green; font-size: 28px;">✔️</span></div>
+<button disabled="disabled" onclick="register()">Войти</button>
+<br/><br/>
+<a class="register-link" href="https://1wqmgp.top/?open=register&amp;p=3thr" target="_blank">🔗 Зарегистрироваться на 1win</a>
+</div>
+<div class="hidden" id="game">
+<h2>🎯 Ваш персональный прогноз</h2>
+<div class="goal-container">
+<img alt="Goal" id="goal" src="images/gate.png"/>
+<div id="overlay">
+<div class="target" id="top-left"></div>
+<div class="target" id="top-center"></div>
+<div class="target" id="top-right"></div>
+<div class="target" id="bottom-left"></div>
+<div class="target" id="bottom-right"></div>
+</div>
+<div class="spinner hidden" id="loading"></div>
+<div class="loading-text hidden" id="loadingText">Анализируем шансы...</div>
+</div>
+<button id="predictButton" onclick="getPrediction()">⚡ Получить прогноз</button>
+</div>
+<script src="script.js"></script>
+<div style="position: fixed; bottom: 10px; width: 100%; text-align: center;">
+<a href="https://t.me/+VosMcpLajfo1OGQy" style="
+        color: #4ade80;
+        font-weight: bold;
+        font-size: 1.2em;
+        text-decoration: none;
+      " target="_blank">Наш Telegram</a>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var confirmBet = document.getElementById('confirm_bet');
+    var loginButton = document.querySelector('button');
+    var inputID = document.querySelector('input[placeholder="Введите ваш ID"]');
+    var betInput = document.getElementById('bet_amount');
+    var isBetConfirmed = false;
+
+    // Обработка нажатия на галочку
+    confirmBet.addEventListener('click', function() {
+        var betAmount = betInput.value.trim();
+        if (betAmount === '' || parseFloat(betAmount) <= 0) {
+            alert('Пожалуйста, введите корректную сумму ставки!');
+            isBetConfirmed = false;
+        } else {
+            betInput.disabled = true;
+            this.innerText = '✅';
+            isBetConfirmed = true;
+            loginButton.disabled = false;
+        }
+    });
+
+    // Обработка нажатия кнопки Войти
+    loginButton.addEventListener('click', function(event) {
+        if (!inputID.value.trim()) {
+            event.preventDefault();
+            alert('Пожалуйста, введите ваш ID!');
+            return;
+        }
+        if (!isBetConfirmed) {
+            event.preventDefault();
+            alert('Пожалуйста, введите и подтвердите сумму ставки!');
+        }
+    });
+});
+</script></body>
+</html>
